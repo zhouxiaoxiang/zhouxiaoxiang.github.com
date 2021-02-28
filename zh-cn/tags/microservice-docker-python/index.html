@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>标签: microservice docker python - 玄鐵重劍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<link href="/tags/microservice-docker-python/index.html" rel="alternate" hreflang="en">
+    
+
+
+<meta name="description" content="寶劍既出誰與爭鋒">
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+<script src="/assets/js/DPlayer.min.js"></script></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+        <div class="navbar-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item " href="/zh-cn/archives">归档</a>
+            
+            <a class="navbar-item " href="/zh-cn/categories">分类</a>
+            
+            <a class="navbar-item " href="/zh-cn/tags">标签</a>
+            
+            <a class="navbar-item " href="/zh-cn/about">关于</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            
+            
+            
+<div class="column is-narrow has-text-centered">
+    <div class="dropdown is-up is-right is-hoverable" style="margin-top: -0.2em;">
+        <div class="dropdown-trigger">
+            <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu7">
+                <span class="icon">
+                    <i class="fas fa-globe"></i>
+                </span>
+                <span>简体中文</span>
+                <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+            </button>
+        </div>
+        <div class="dropdown-menu has-text-left" role="menu" style="top:100%">
+            <div class="dropdown-content">
+            
+                <a href="/tags/microservice-docker-python/index.html" class="dropdown-item">
+                    English
+                </a>
+            
+                <a href="/zh-cn/tags/microservice-docker-python/index.html" class="dropdown-item">
+                    简体中文
+                </a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </div>
+</nav>
+
+    <section class="section section-heading">
+    <div class="container">
+        <div class="content">
+            <h5>#microservice docker python</h5>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/zh-cn/microservice/" itemprop="url">微服务快速开发</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2019-04-19T00:55:53.000Z" itemprop="datePublished">4月 19 2019</time>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            3 分钟 读完 (约 497 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2 id="ORIOLE哲学"><a href="#ORIOLE哲学" class="headerlink" title="ORIOLE哲学"></a>ORIOLE哲学</h2><p>软件之道，唯快不破</p>
+<h2 id="设计目的"><a href="#设计目的" class="headerlink" title="设计目的"></a>设计目的</h2><p>运用技术手段打造软件平台、提升研发效率，快速使用数据库、缓存、消息队列，强化整体代码风格。<br>oriole-service == dubbo | spring cloud， 如果没有软件平台，不必考虑本框架，杀鸡焉用牛刀。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+<li>安装软件</li>
+</ol>
+<p>注意：这些软件<strong>缺一不可</strong>，使用apt-get即可完成全部安装，实际开发会统一安装。</p>
+<ul>
+<li>mongodb</li>
+<li>mysql</li>
+<li>rabbitmq</li>
+<li>redis</li>
+<li>python3.6</li>
+</ul>
+<ol start="2">
+<li>安装oriole-service</li>
+</ol>
+<p>oriole-service是实现微服务的核心框架，实现了服务容器、测试、文档的自动化。</p>
+<p><code>pip install oriole-service</code></p>
+<h2 id="配置-services-cfg"><a href="#配置-services-cfg" class="headerlink" title="配置 services.cfg"></a>配置 services.cfg</h2><p>可以手工编辑，亦可使用<code>o c</code>统一配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AMQP_URI:      pyamqp://test:test@127.0.0.1</span><br><span class="line">database:      mysql://test:test@127.0.0.1/test?charset=utf8</span><br><span class="line">test_database: mysql://test:test@127.0.0.1/test?charset=utf8</span><br><span class="line">datasets:      redis://127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="编写服务-services-log-py"><a href="#编写服务-services-log-py" class="headerlink" title="编写服务 services/log.py"></a>编写服务 services/log.py</h2><p>服务的简化版，编写完成后启动，可以使用<code>o s</code>远程调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from oriole_service.app import *</span><br><span class="line"></span><br><span class="line">class LogService(App):</span><br><span class="line">    name = service_name(__file__)</span><br><span class="line">    ver = &quot;1.0.0&quot;</span><br><span class="line"></span><br><span class="line">    @rpc</span><br><span class="line">    def add(self, params=&#123;&quot;param&quot;: &quot;eric&quot;&#125;):</span><br><span class="line">        self.log.debug(&quot;# %s(%s)&quot; % (&quot;add&quot;, params))</span><br><span class="line">        return self._o(params)</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h2><p>使用<code>o r</code></p>
+<p><code>o r log</code></p>
+<h2 id="运行客户端"><a href="#运行客户端" class="headerlink" title="运行客户端"></a>运行客户端</h2><p><code>o s</code></p>
+<p>进入后，使用<code>log_service.add()</code><br>该命令类似于dubbo的客户端和控制台。</p>
+<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"autoplay":true,"theme":"#FADFA3","loop":true,"video":{"url":"https://github.com/zhouxiaoxiang/oriole-microservice/raw/zhouxiaoxiang-patch-1/run.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+
+<h2 id="自动创建文档"><a href="#自动创建文档" class="headerlink" title="自动创建文档"></a>自动创建文档</h2><p><code>o d</code></p>
+<h2 id="创建镜像"><a href="#创建镜像" class="headerlink" title="创建镜像"></a>创建镜像</h2><p>如果没有docker经验，跳过本节。<br>每个微服务可以方便、快速地部署到docker、k8s中，不是本文要点，暂且不表。</p>
+<p><code>o b log</code></p>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><p>本软件可以自由使用，但是作者不对使用本软件出现的任何损失承担责任。<br>如有问题，请确保使用的是<strong>最新版本</strong>。<br>如提PR，请注意代码风格与框架要保持完全一致，务必精简，否则不予接受。</p>
+
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+
+    
+    
+    </div>
+</section>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="content">
+            <div class="is-narrow has-text-centered">
+                Enjoy it? Donate me.<br>您的支持是我前进的动力.<br>
+            </div>
+
+            <div class="is-narrow has-text-centered">
+                <img src="/images/donate.jpg" title="支付宝打赏" height="164px" width="164px">
+            </div>
+
+
+            <div class="is-hidden-mobile"></div>
+            <!--
+            <audio loop="loop" src="/mp3/eric.mp3" id="myAudio" autoplay="autoplay" preload="auto" style="display:none;"></audio>
+            -->
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+
+<script src="/js/script.js"></script>
+
+    
+</body>
+</html>
