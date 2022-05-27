@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>微服务环境 - 玄鐵重劍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<link href="/microservices-manifest/" rel="alternate" hreflang="en">
+    
+
+
+<meta name="description" content="寶劍既出誰與爭鋒">
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+        <div class="navbar-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item " href="/zh-cn/archives">归档</a>
+            
+            <a class="navbar-item " href="/zh-cn/categories">分类</a>
+            
+            <a class="navbar-item " href="/zh-cn/tags">标签</a>
+            
+            <a class="navbar-item " href="/zh-cn/about">关于</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            
+            
+            
+<div class="column is-narrow has-text-centered">
+    <div class="dropdown is-up is-right is-hoverable" style="margin-top: -0.2em;">
+        <div class="dropdown-trigger">
+            <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu7">
+                <span class="icon">
+                    <i class="fas fa-globe"></i>
+                </span>
+                <span>简体中文</span>
+                <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+            </button>
+        </div>
+        <div class="dropdown-menu has-text-left" role="menu" style="top:100%">
+            <div class="dropdown-content">
+            
+                <a href="/microservices-manifest/" class="dropdown-item">
+                    English
+                </a>
+            
+                <a href="/zh-cn/microservices-manifest/" class="dropdown-item">
+                    简体中文
+                </a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            微服务环境
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2019-04-11T10:18:50.000Z" itemprop="datePublished">4月 11 2019</time>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            几秒 读完 (约 73 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <p>完整的软件列表，用于故障检查和恢复。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">alabaster==0.7.12</span><br><span class="line">amqp==2.4.2</span><br><span class="line">Babel==2.5.3</span><br><span class="line">certifi==2019.3.9</span><br><span class="line">chardet==3.0.4</span><br><span class="line">dnspython==1.16.0</span><br><span class="line">docutils==0.14</span><br><span class="line">eventlet==0.24.1</span><br><span class="line">greenlet==0.4.15</span><br><span class="line">idna==2.8</span><br><span class="line">imagesize==1.1.0</span><br><span class="line">importlib-metadata==0.9</span><br><span class="line">Jinja2==2.10</span><br><span class="line">kombu==4.5.0</span><br><span class="line">MarkupSafe==1.1.1</span><br><span class="line">mock==2.0.0</span><br><span class="line">mockredispy==2.9.3</span><br><span class="line">mogo==0.4.0</span><br><span class="line">mongomock==3.8.0</span><br><span class="line">monotonic==1.5</span><br><span class="line">mysqlclient==1.3.12</span><br><span class="line">nameko==2.11.0</span><br><span class="line">oriole==16.1.0</span><br><span class="line">oriole-service==26.2.0</span><br><span class="line">packaging==19.0</span><br><span class="line">path.py==11.5.2</span><br><span class="line">pbr==5.1.3</span><br><span class="line">pkg-resources==0.0.0</span><br><span class="line">py==1.8.0</span><br><span class="line">pyetcd==1.8.0</span><br><span class="line">Pygments==2.3.1</span><br><span class="line">pymongo==3.7.2</span><br><span class="line">PyMySQL==0.7.11</span><br><span class="line">pyparsing==2.4.0</span><br><span class="line">pytest==3.2.3</span><br><span class="line">pytz==2019.1</span><br><span class="line">PyYAML==5.1</span><br><span class="line">redis==2.10.6</span><br><span class="line">requests==2.21.0</span><br><span class="line">sentinels==1.0.0</span><br><span class="line">six==1.12.0</span><br><span class="line">snowballstemmer==1.2.1</span><br><span class="line">Sphinx==1.7.2</span><br><span class="line">sphinxcontrib-websupport==1.1.0</span><br><span class="line">SQLAlchemy==1.2.14</span><br><span class="line">urllib3==1.24.1</span><br><span class="line">vine==1.3.0</span><br><span class="line">Werkzeug==0.15.2</span><br><span class="line">wrapt==1.11.1</span><br><span class="line">zipp==0.3.3</span><br></pre></td></tr></table></figure>
+
+
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/zh-cn/tags/microservice-oriole-service/">#microservice oriole-service</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/zh-cn/microservice/">微服务快速开发</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/zh-cn/study_process/">深入研究进展</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="content">
+            <div class="is-narrow has-text-centered">
+                Enjoy it? Donate me.<br>您的支持是我前进的动力.<br>
+            </div>
+
+            <div class="is-narrow has-text-centered">
+                <img src="/images/donate.jpg" title="支付宝打赏" height="164px" width="164px">
+            </div>
+
+
+            <div class="is-hidden-mobile"></div>
+            <audio loop="loop" src="/mp3/eric.mp3" id="myAudio" autoplay="autoplay" preload="auto" style="display:none;"></audio>
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+
+<script src="/js/script.js"></script>
+
+    
+</body>
+</html>

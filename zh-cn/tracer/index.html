@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+<title>微服务跟踪 - 玄鐵重劍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<link href="/tracer/" rel="alternate" hreflang="en">
+    
+
+
+<meta name="description" content="寶劍既出誰與爭鋒">
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+
+</head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+        <div class="navbar-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item " href="/zh-cn/archives">归档</a>
+            
+            <a class="navbar-item " href="/zh-cn/categories">分类</a>
+            
+            <a class="navbar-item " href="/zh-cn/tags">标签</a>
+            
+            <a class="navbar-item " href="/zh-cn/about">关于</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            
+            
+            
+<div class="column is-narrow has-text-centered">
+    <div class="dropdown is-up is-right is-hoverable" style="margin-top: -0.2em;">
+        <div class="dropdown-trigger">
+            <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu7">
+                <span class="icon">
+                    <i class="fas fa-globe"></i>
+                </span>
+                <span>简体中文</span>
+                <span class="icon is-small">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+            </button>
+        </div>
+        <div class="dropdown-menu has-text-left" role="menu" style="top:100%">
+            <div class="dropdown-content">
+            
+                <a href="/tracer/" class="dropdown-item">
+                    English
+                </a>
+            
+                <a href="/zh-cn/tracer/" class="dropdown-item">
+                    简体中文
+                </a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            微服务跟踪
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2019-08-12T14:00:00.000Z" itemprop="datePublished">8月 12 2019</time>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 分钟 读完 (约 532 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <h2 id="必要知识"><a href="#必要知识" class="headerlink" title="必要知识"></a>必要知识</h2><p>oriole-service ≥ 30.6.0</p>
+<p>还不会创建微服务？看</p>
+<ul>
+<li><a href="https://zhouxiaoxiang.top/zh-cn/microservice/">中文版</a></li>
+<li><a href="https://zhouxiaoxiang.top/microservice/">英文版</a></li>
+</ul>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>为了演示，创建三个微服务：</p>
+<ul>
+<li>eric_service 独立服务</li>
+<li>src_service  起始服务，使用中间服务进行审核，然后继续执行。</li>
+<li>mid_service  中间服务</li>
+</ul>
+<p>简略表示为: 【src_service】-&gt;【mid_service】-&gt;【src_service】<br>三个微服务处于同一个容器中，实际上如果分别运行在不同的容器中，结果与本文完全一致，这正是分布式的强大之处。<br>微服务同时运行，交错输出，不是传统的A调用B结束之后B再调用A，以后有机会再细说其中奥妙。</p>
+<h2 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h2><p>采用oriole_service创建的所有微服务自动加入跟踪，如下图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">微服务跟踪显示三个服务都参与了服务自动发现</span><br><span class="line">[eric_service.ms_update_service.301fa437-5e46-4d39-b116-6b3ad2b8c84a] entrypoint result trace</span><br><span class="line">[mid_service.ms_update_service.bc1a29e8-8a20-44e1-96fa-e14b3d5acd18]  entrypoint call trace</span><br><span class="line">[src_service.ms_update_service.cb07d701-e74a-4842-bcac-cb65a981a760]  entrypoint call trace</span><br></pre></td></tr></table></figure>
+
+<h2 id="高级方法"><a href="#高级方法" class="headerlink" title="高级方法"></a>高级方法</h2><h3 id="显示详细信息"><a href="#显示详细信息" class="headerlink" title="显示详细信息"></a>显示详细信息</h3><p>在services.cfg中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">LOGGING:</span><br><span class="line">    version: 1</span><br><span class="line">    disable_existing_loggers: false</span><br><span class="line">    formatters:</span><br><span class="line">        tracer:</span><br><span class="line">            (): nameko_tracer.formatters.JSONFormatter</span><br><span class="line">    loggers:</span><br><span class="line">        nameko_tracer:</span><br><span class="line">            level: INFO</span><br><span class="line">            handlers: [tracer]</span><br><span class="line">    handlers:</span><br><span class="line">        tracer:</span><br><span class="line">            class: logging.StreamHandler</span><br><span class="line">            formatter: tracer</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>o s</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">显示所有在线服务</span><br><span class="line">  服务名                             容器      版本</span><br><span class="line">eric_service                   =&gt; 73273e056d25|1.0.1  </span><br><span class="line">mid_service                    =&gt; 73273e056d25|0.0.1  </span><br><span class="line">src_service                    =&gt; 73273e056d25|0.0.1  </span><br><span class="line"></span><br><span class="line">调用src_service微服务的add方法</span><br><span class="line">&gt;&gt;&gt; src_service.add()</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[src_service.add.f1fcca92-d5a7-4d78-9237-dc50f40ef71d] entrypoint call trace</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;hostname&quot;: &quot;73273e056d25&quot;, </span><br><span class="line">    &quot;service&quot;: &quot;mid_service&quot;, </span><br><span class="line">    &quot;context_data&quot;: &#123;&#125;, </span><br><span class="line">    &quot;call_id&quot;: &quot;mid_service.handle.9bc76133-7302-4771-8248-460a870b5082&quot;, </span><br><span class="line">    &quot;call_id_stack&quot;: [</span><br><span class="line">        &quot;standalone_rpc_proxy.call.b0c00628-0d5e-47f5-89f0-ddc0aa6c709d&quot;,</span><br><span class="line">        &quot;src_service.add.f1fcca92-d5a7-4d78-9237-dc50f40ef71d&quot;, </span><br><span class="line">        &quot;mid_service.handle.9bc76133-7302-4771-8248-460a870b5082&quot;</span><br><span class="line">    ], </span><br><span class="line">    &quot;origin_call_id&quot;: &quot;standalone_rpc_proxy.call.b0c00628-0d5e-47f5-89f0-ddc0aa6c709d&quot;, </span><br><span class="line">    &quot;stage&quot;: &quot;request&quot;, </span><br><span class="line">    &quot;call_args&quot;: &#123;&quot;params&quot;: &#123;&quot;param&quot;: &quot;eric&quot;&#125;&#125;, </span><br><span class="line">    &quot;call_args_redacted&quot;: false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[mid_service.handle.9bc76133-7302-4771-8248-460a870b5082] entrypoint call trace</span><br></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>软件设计形同对弈，鼠目寸光则困于当下，势利均沾方可进退自如，世所困扰大体如是。</p>
+
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/zh-cn/2020_process/">2020年2月份进步</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/zh-cn/raffle/">模拟抽奖</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="content">
+            <div class="is-narrow has-text-centered">
+                Enjoy it? Donate me.<br>您的支持是我前进的动力.<br>
+            </div>
+
+            <div class="is-narrow has-text-centered">
+                <img src="/images/donate.jpg" title="支付宝打赏" height="164px" width="164px">
+            </div>
+
+
+            <div class="is-hidden-mobile"></div>
+            <audio loop="loop" src="/mp3/eric.mp3" id="myAudio" autoplay="autoplay" preload="auto" style="display:none;"></audio>
+            
+        </div>
+    </div>
+</footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+
+<script src="/js/script.js"></script>
+
+    
+</body>
+</html>
